@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div style="text-align:center;">
+    <title >TODO App</title>
+    </div>
+</head>
+<body>
+<centre>
+
+
+    <h1 style="text-align:center;">Todo App</h1>
+    <form action="/add" , method="post">
+        <div style="text-align:center;">
+          <label for="title">Todo Title</label>
+          <br>
+          <input type="text" style="text-align:center;" name="title" placeholder="Enter Title">
+            </br>
+            <br>
+            <label for="title">Todo Description </label>
+            <br>
+            <input type="text" name="desc" style="text-align:center;" placeholder="Enter description">
+            </br>
+            <br>
+            <label for="title">Todo Deadline </label>
+            <br>
+            <input type="datetime-local" value="2021-01-12T19:30"
+       min="2021-01-01T00:00" max="2021-12-30T00:00" name="asdate" style="text-align:center;" placeholder="Enter date till which this task needs to be completed">
+            </br>
+            <br>
+            <label for="title">Todo For? </label>
+            <br>
+            <input type="text" name="assignto" size="45" style="text-align:center;" placeholder="Enter person to which this task is being assigned">
+            </br>
+            <br>
+            <label for="title">Todo Priority </label>
+            <input type="number" min="1" max="20"name="priority" style="width: 15em"   placeholder="Enter Priority of this task (1-20)">
+            <br>
+          <button type="submit">Add</button>
+        </div>
+    </form>
+    <div style="text-align:center;">
+
+
+    {% for todo in todo_list %}
+     <p> {{todo.id}} | {{todo.title}} | {{todo.assignto}} | {{todo.desc}} | {{todo.asdate}} | {{todo.priority}}</p>
+
+       {% if todo.complete == False %}
+         <span>Not Completed</span>
+       {% else %}
+          <span>Completed</span>
+       {% endif %}
+
+       <a href="/update/{{todo.id}}">Update</a>
+       <a href="/delete/{{todo.id}}">Delete</a>
+    {% endfor %}
+    </div>
+</centre>
+</body>
+</html>
