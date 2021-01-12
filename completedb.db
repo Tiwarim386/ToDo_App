@@ -1,0 +1,117 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
+
+-- Started on 2021-01-13 02:44:53 IST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 201 (class 1259 OID 16387)
+-- Name: todo; Type: TABLE; Schema: public; Owner: mohit.tiwari
+--
+
+CREATE TABLE public.todo (
+    id integer NOT NULL,
+    title character varying(100),
+    "desc" character varying(1000),
+    assignto character varying(100),
+    asdate character varying(100),
+    priority integer,
+    complete boolean
+);
+
+
+ALTER TABLE public.todo OWNER TO "mohit.tiwari";
+
+--
+-- TOC entry 200 (class 1259 OID 16385)
+-- Name: todo_id_seq; Type: SEQUENCE; Schema: public; Owner: mohit.tiwari
+--
+
+CREATE SEQUENCE public.todo_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.todo_id_seq OWNER TO "mohit.tiwari";
+
+--
+-- TOC entry 3258 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: todo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: mohit.tiwari
+--
+
+ALTER SEQUENCE public.todo_id_seq OWNED BY public.todo.id;
+
+
+--
+-- TOC entry 3118 (class 2604 OID 16390)
+-- Name: todo id; Type: DEFAULT; Schema: public; Owner: mohit.tiwari
+--
+
+ALTER TABLE ONLY public.todo ALTER COLUMN id SET DEFAULT nextval('public.todo_id_seq'::regclass);
+
+
+--
+-- TOC entry 3252 (class 0 OID 16387)
+-- Dependencies: 201
+-- Data for Name: todo; Type: TABLE DATA; Schema: public; Owner: mohit.tiwari
+--
+
+COPY public.todo (id, title, "desc", assignto, asdate, priority, complete) FROM stdin;
+1	First	First todo	mohit	2021-01-11T19:30	4	f
+2	second	second todo	moulisir	2021-01-22T19:30	1	f
+3	third	third todo	moulisir	2021-01-25T19:30	20	f
+7	hi	hello	Alixir	2021-01-31T19:30	9	f
+6	\N	\N	\N	\N	20	f
+11	\N	\N	\N	\N	20	f
+12	\N	\N	\N	\N	20	f
+13	\N	\N	\N	\N	20	f
+\.
+
+
+--
+-- TOC entry 3259 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: todo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mohit.tiwari
+--
+
+SELECT pg_catalog.setval('public.todo_id_seq', 13, true);
+
+
+--
+-- TOC entry 3120 (class 2606 OID 16395)
+-- Name: todo todo_pkey; Type: CONSTRAINT; Schema: public; Owner: mohit.tiwari
+--
+
+ALTER TABLE ONLY public.todo
+    ADD CONSTRAINT todo_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2021-01-13 02:44:53 IST
+
+--
+-- PostgreSQL database dump complete
+--
+
